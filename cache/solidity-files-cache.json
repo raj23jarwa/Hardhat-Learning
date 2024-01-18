@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\A_Learning\\HardhatProjects\\contracts\\Token.sol": {
-      "lastModificationDate": 1705572092327,
-      "contentHash": "48bcd20884fae4dbaeb38f04f9ba2553",
+      "lastModificationDate": 1705606880223,
+      "contentHash": "dfc528e04046b10a756fd5cb25dc7178",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.19",
