@@ -8,7 +8,7 @@ describe("Token contract", function () {
     beforeEach(async function () {
         // Get the first three accounts (owner, addr1, addr2) from the list of signers
         [owner, addr1, addr2, ...addrs] = await ethers.getSigners();
-        console.log("Signers object", owner);
+        // console.log("Signers object", owner);
 
         // Get the contract factory for the "Token" contract
         const Token = await ethers.getContractFactory("Token");
@@ -56,5 +56,21 @@ describe("Token contract", function () {
             // Check if the owner's balance remains unchanged
             expect(await hardhatToken.balanceOf(owner.address)).to.equal(initialOwnerBalance);
         });
+
+        it("Should update balance after successfully transfers", async function () {
+            const initialOwnerBalance = await hardhatToken.balanceOf(owner.address);
+            await hardhatToken.transfer(addr1.address, 5);
+            await hardhatToken.transfer(addr2.address, 10);
+        
+            const finalOwnerBalance = await hardhatToken.balanceOf(owner.address);
+            expect(finalOwnerBalance).to.equal(BigInt(initialOwnerBalance) - 15n);
+        
+            const addr1Balance = await hardhatToken.balanceOf(addr1.address);
+            expect(addr1Balance).to.equal(5);
+        
+            const addr2Balance = await hardhatToken.balanceOf(addr2.address);
+            expect(addr2Balance).to.equal(10);
+        });
+        
     });
 });
